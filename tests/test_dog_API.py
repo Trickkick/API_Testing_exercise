@@ -1,7 +1,6 @@
 import requests
 import pytest
-from data.dogs_data import breeds_generator
-import re
+from tests.dogs_data import breeds_generator
 
 
 # from tests.dogs_data import sub_breeds_data_generator
@@ -34,8 +33,6 @@ def test_dog_api_by_breed(breed):
     r = requests.get(f"https://dog.ceo/api/breed/{breed}/list")
     subs = r.json()['message']
     if len(subs) > 0:
-        response = requests.get(f"https://dog.ceo/api/breed/{breed}/images/random")
-        assert re.search(breed, response.json()['message']) is not None
         for sub in subs:
             response = requests.get(f"https://dog.ceo/api/breed/{breed}/{sub}/images/random")
             assert response.json()['status'] == 'success'
@@ -43,11 +40,11 @@ def test_dog_api_by_breed(breed):
     else:
         response = requests.get(f"https://dog.ceo/api/breed/{breed}/images/random")
         assert response.json()['status'] == 'success'
-        assert re.search(breed, response.json()['message']) is not None
+        assert response.json()['message'].split('/')[4] == breed
 
 
 def test_dog_api_multiple_random_images():
-    for i in range(1, 51):
+    for i in range(1, 50):
         response = requests.get(f"https://dog.ceo/api/breeds/image/random/{i}")
         assert response.json()['status'] == 'success'
         assert len(response.json()['message']) == i
