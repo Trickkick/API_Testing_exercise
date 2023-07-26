@@ -48,11 +48,11 @@ def test_delete_resource(numb):
     assert response.ok
 
 
-@pytest.mark.parametrize('usId', [
+@pytest.mark.parametrize('usid', [
     1,
     2
 ])
-def test_filter_resources(usId):
-    response = requests.get(f'https://jsonplaceholder.typicode.com/posts?userId={usId}')
+def test_filter_resources(usid):
+    response = requests.get(f'https://jsonplaceholder.typicode.com/posts?userId={usid}')
     for res in response.json():
-        assert res['userId'] == usId
+        assert res['userId'] == usid
