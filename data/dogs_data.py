@@ -10,7 +10,6 @@ def breeds_data_generator():
 
 breeds_generator = breeds_data_generator()
 
-
 """def sub_breeds_data_generator(breed):
     response = requests.get(f"https://dog.ceo/api/breed/{breed}/list")
     for el in response.json()['message']:

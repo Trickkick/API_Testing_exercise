@@ -48,5 +48,5 @@ res = requests.get("https://api.openbrewerydb.org/v1/breweries/58bc0ff5-5ada-4b3
 print(res.json())"""
 
 for el in placeholder_data:
-    response = requests.post('https://jsonplaceholder.typicode.com/posts',el)
+    response = requests.post('https://jsonplaceholder.typicode.com/posts', el)
     print(response.json())
